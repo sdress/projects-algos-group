@@ -6,6 +6,9 @@ Group:
 - Sarah Dresser
 - Karina Anayancim Flores 
 
+App Name:
+TBD
+
 Description:
 An app in which users can recommend places to visit in each state
 
@@ -16,4 +19,7 @@ Minimum Viable Product features:
 - CRUD operations for recommendations
 
 Product Backlog:
-- extra features
+- extra features TBD
+
+GitHub link:
+https://github.com/sdress/projects-algos-group
