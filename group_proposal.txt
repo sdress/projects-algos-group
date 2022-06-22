@@ -6,3 +6,14 @@ Group:
 - Sarah Dresser
 - Karina Anayancim Flores 
 
+Description:
+An app in which users can recommend places to visit in each state
+
+Minimum Viable Product features:
+- Login and Registration forms + validations
+- Dashboard with all states/locations available
+- Form for adding recommendations
+- CRUD operations for recommendations
+
+Product Backlog:
+- extra features
