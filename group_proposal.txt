@@ -4,7 +4,7 @@ Group:
 - Yasmin Ibrahim: Back-End/Database
 - Teren O'Toole: Front-End
 - Sarah Dresser: Back-End
-- Karina Anayancim Flores: 
+- Karina Anayancim Flores: TBD
 
 App Name:
 TBD
@@ -19,7 +19,7 @@ Minimum Viable Product features:
 - CRUD operations for recommendations
 
 Product Backlog:
-- extra features TBD
+- users can like and comment on recommendations
 
 GitHub link:
 https://github.com/sdress/projects-algos-group
