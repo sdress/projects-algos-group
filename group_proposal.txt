@@ -1,10 +1,10 @@
 Projects & Algos Group Project Proposal
 
 Group:
-- Yasmin Ibrahim
-- Teren O'Toole
-- Sarah Dresser
-- Karina Anayancim Flores 
+- Yasmin Ibrahim: Back-End/Database
+- Teren O'Toole: Front-End
+- Sarah Dresser: Back-End
+- Karina Anayancim Flores: 
 
 App Name:
 TBD
