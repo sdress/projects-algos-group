@@ -9,6 +9,9 @@
     <script src='main.js'></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&family=Oswald:wght@500&family=Roboto&family=Smooch&display=swap" rel="stylesheet">
 </head>
 <!-- there is an image that takes up the whole right side but wont load till everything is running, validations are included but commented out for right now 
  but they work -->
@@ -24,9 +27,13 @@
         <style> h1 {
             text-align: center;
             color:darkslategrey;
-            font-size:30px;
-            font-family:fantasy;
+            font-size:35px;
             font-weight: bold;
+            font-family: 'Indie Flower', cursive;
+            font-family: 'Lobster', cursive;
+            font-family: 'Oswald', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Smooch', cursive;
         }
             </style>
             </h1>
@@ -66,12 +73,17 @@
     </form>
     <form action="/login" method="POST" class="col-5  bg-light text-dark">
         <div class="d-flex justify-content-around">
-            <style> h2,div {
+            <style> h2,div,input {
                 color:darkslategrey;
-                font-family:fantasy;
                 font-weight: bolder;
+                font-size: large;
                 border-radius: 10px;
                 border-color: black;
+                font-family: 'Indie Flower', cursive;
+                font-family: 'Lobster', cursive;
+                font-family: 'Oswald', sans-serif;
+                font-family: 'Roboto', sans-serif;
+                font-family: 'Smooch', cursive;
             }
                 </style>
         <!-- {% with messages = get_flashed_messages(category_filter=["login"]) %}
