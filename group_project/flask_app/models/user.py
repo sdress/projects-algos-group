@@ -47,6 +47,8 @@ class User:
             return None
         else:
             return cls(results[0])
+        
+   
     @staticmethod #validations
     def validate_newuser(form_data):
         is_valid = True
