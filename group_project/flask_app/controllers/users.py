@@ -1,11 +1,11 @@
 from flask_app import app
 from flask_bcrypt import Bcrypt
-bcrypt = Bcrypt(app)
 from flask import render_template, request, redirect, session, flash
 from flask_app.models import trip, user
 from flask_app.models.trip import Trip
 from flask_app.models.user import User
 
+bcrypt = Bcrypt(app)
 
 @app.route("/")
 def index_route():
@@ -20,9 +20,9 @@ def register_user():
         'first_name': request.form['first_name'],
         'last_name': request.form['last_name'],
         'email': request.form['email'],
-        'password': bcrypt.generate_pw_hash(request.form['password']),
+        'password': bcrypt.generate_password_hash(request.form['password']),
     }
-    new_user = User.create(data)
+    new_user = User.register(data)
     session['user_id'] = new_user.id
     return redirect('/dashboard')
 
