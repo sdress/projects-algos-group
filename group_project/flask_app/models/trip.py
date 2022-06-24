@@ -1,3 +1,90 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 from flask_app.models import user, trip
+
+db = ''
+
+class Trip:
+    def __init__(self, data):
+        self.id = data['id']
+        self.name = data['name']
+        self.city = data['city']
+        self.state = data['state']
+        self.description = data['description']
+        self.category = data['category']
+        self.cost = data['cost']
+        self.posted_by = data['posted_by']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
+    
+    # CREATE method
+    @classmethod
+    def create(cls, data):
+        query = "INSERT INTO trips (name, city, state, description, category, cost, posted_by, created_at, updated_at) VALUES ( %(name)s, %(city)s, %(state)s, %(description)s, %(category)s, %(cost)s, %(posted_by)s, NOW(), NOW() );"
+        return connectToMySQL(db).query_db(query, data)
+
+    # READ methods
+    @classmethod
+    def get_all(cls):
+        query = "SELECT trips.*, users.id FROM trips LEFT JOIN users ON users.id = trips.posted_by;"
+        results = connectToMySQL(db).query_db(query)
+        all_list = []
+        for row in results:
+            all_list.append(row)
+        return all_list
+
+    @classmethod
+    def get_all_by_state(cls, data):
+        query = "SELECT * FROM trips WHERE state = %(state)s;"
+        results = connectToMySQL(db).query_db(query, data)
+        all_by_state = []
+        for row in results:
+            all_by_state.append(row)
+        return all_by_state
+    
+    @classmethod
+    def get_states_list(cls):
+        query = "SELECT trips.state from trips;"
+        results = connectToMySQL(db).query_db(query)
+        states_list = []
+        for state in results:
+            states_list.append(state)
+        return states_list
+
+    # UPDATE method
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE trips SET name = %(name)s,  city = %(city)s, state = %(state)s, description = %(description)s, category = %(category)s, cost = %(cost)s WHERE id = %(id)s;"
+        return connectToMySQL(db).query_db(query, data)
+
+    # DESTROY method
+    @classmethod
+    def destroy(cls, data):
+        query = "DELETE * FROM trips WHERE id = %(id)s;"
+        return connectToMySQL(db).query_db(query, data)
+    
+    # TRIP FORM VALIDATIONS
+    def validate_trip(data):
+        is_valid = True
+        if len(data['name']) < 3:
+            flash('Name of activity must be at least 3 characters')
+            is_valid = False
+        if len(data['city'])< 3:
+            flash('Please include a city')
+            is_valid = False
+        if len(data['state']) < 2:
+            flash('Please select a state')
+            is_valid = False
+        if len(data['description']) < 3:
+            flash('Please provide a description')
+            is_valid = False
+        if data['category'] == None:
+            flash('Please provide a category')
+            is_valid = False
+        if len(data['cost']) < 1:
+            flash('Please input cost')
+            is_valid = False
+        if not 'posted_by' in data:
+            print('User not found')
+            is_valid = False
+        return is_valid
