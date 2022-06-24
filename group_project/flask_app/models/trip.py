@@ -64,7 +64,7 @@ class Trip:
         return connectToMySQL(db).query_db(query, data)
     
     # TRIP FORM VALIDATIONS
-    def validate_trip(data):
+    def validate(data):
         is_valid = True
         if len(data['name']) < 3:
             flash('Name of activity must be at least 3 characters')
