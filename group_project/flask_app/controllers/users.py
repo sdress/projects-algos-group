@@ -1,4 +1,3 @@
-from crypt import methods
 from flask_app import app
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
@@ -14,7 +13,7 @@ def index_route():
 
 @app.route('/register', methods=['POST'])
 def register_user():
-    if not User.validate_newuser():
+    if not User.validate_newuser(request.form):
         return redirect('/')
 
     data = {
@@ -29,7 +28,7 @@ def register_user():
 
 @app.route('/login', methods=['POST'])
 def login_user():
-    if not User.validate_login():
+    if not User.validate_login(request.form):
         return redirect('/')
 
     data = {

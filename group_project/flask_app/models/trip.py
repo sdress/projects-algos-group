@@ -64,6 +64,7 @@ class Trip:
         return connectToMySQL(db).query_db(query, data)
     
     # TRIP FORM VALIDATIONS
+    @staticmethod
     def validate(data):
         is_valid = True
         if len(data['name']) < 3:
