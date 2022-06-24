@@ -28,6 +28,10 @@ class Trip:
     def get_all(cls):
         query = "SELECT trips.*, users.id FROM trips LEFT JOIN users ON users.id = trips.posted_by;"
         results = connectToMySQL(db).query_db(query)
+        print(results)
+        if results == False:
+            print('From trip.py line 33: None found')
+            return None
         all_list = []
         for row in results:
             all_list.append(row)
@@ -37,6 +41,9 @@ class Trip:
     def get_all_by_state(cls, data):
         query = "SELECT * FROM trips WHERE state = %(state)s;"
         results = connectToMySQL(db).query_db(query, data)
+        if results == False:
+            print('From trip.py line 45: None found')
+            return None
         all_by_state = []
         for row in results:
             all_by_state.append(row)
@@ -46,6 +53,9 @@ class Trip:
     def get_states_list(cls):
         query = "SELECT trips.state from trips;"
         results = connectToMySQL(db).query_db(query)
+        if results == False:
+            print('From trip.py line 57: None found')
+            return None
         states_list = []
         for state in results:
             states_list.append(state)
