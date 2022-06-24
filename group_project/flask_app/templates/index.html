@@ -20,6 +20,15 @@
             background-repeat: no-repeat;">
 
     </div>
+    <div class="alert">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="alert-danger">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     <form action="/register" method="POST" class="col-5 bg-light text-dark">
     </div>
 <!--    once we know what we are going to call it we can change the title   -->
