@@ -32,3 +32,14 @@ def create_trip(data):
     }
     trip = Trip.create(data)
     return redirect('/dashboard')
+
+@app.route('/delete/trip/<int:id>')
+def delete(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id":id
+    }
+    Trip.destroy(data)
+    return redirect('/dashboard')
+    
