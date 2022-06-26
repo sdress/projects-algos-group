@@ -18,5 +18,5 @@ Repo includes:
 3. run  `pip install pipenv`
 4. run `python -m pipenv shell`
 5. run `python -m pipenv install flask PyMySQL flask-bcrypt`
-6. run `python server.py`
+6. run `python group_project/server.py`
 7. visit `http://localhost:5000/`
