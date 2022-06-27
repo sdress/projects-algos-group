@@ -61,7 +61,7 @@ keeping very minimal styling till we have an idea what the site as a whole will 
 
 <!-- adding trips with validation messages on top  -->
 
-<form action="/trip/new" method="POST">
+<form action="/trip/save" method="POST">
     <input type="hidden" name="user_id" value="{{session['user_id']}}">
         <!-- {% with messages = get_flashed_messages(category_filter=["trip"]) %}
         {% if messages %}
@@ -108,7 +108,11 @@ keeping very minimal styling till we have an idea what the site as a whole will 
 
     <div>
         <label>Cost:</label>
-        <input type="text" name="cost">
+        <select>
+            <option name="cost" value="$">$</option>
+            <option name="cost" value="$$">$$</option>
+            <option name="cost" value="$$$">$$$</option>
+        </select>
     </div>
 
         <label> Description:</label>

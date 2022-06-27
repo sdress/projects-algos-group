@@ -13,14 +13,14 @@ class Trip:
         self.description = data['description']
         self.category = data['category']
         self.cost = data['cost']
-        self.posted_by = data['posted_by']
+        self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
     
     # CREATE method
     @classmethod
     def create(cls, data):
-        query = "INSERT INTO trips (name, city, state, description, category, cost, posted_by, created_at, updated_at) VALUES ( %(name)s, %(city)s, %(state)s, %(description)s, %(category)s, %(cost)s, %(posted_by)s, NOW(), NOW() );"
+        query = "INSERT INTO trips (name, city, state, description, category, cost, user_id, created_at, updated_at) VALUES ( %(name)s, %(city)s, %(state)s, %(description)s, %(category)s, %(cost)s, %(user_id)s, NOW(), NOW() );"
         return connectToMySQL(db).query_db(query, data)
 
     # READ methods

@@ -28,7 +28,7 @@ def create_trip(data):
         'description': request.form['description'],
         'category': request.form['category'],
         'cost': request.form['cost'],
-        'posted_by' : request.form['posted_by']
+        'user_id' : request.form['user_id']
     }
     trip = Trip.create(data)
     return redirect('/dashboard')
