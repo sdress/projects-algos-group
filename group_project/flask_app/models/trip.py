@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 from flask_app.models import user, trip
 
-db = 'user_trips'
+db = 'users_trips'
 
 class Trip:
     def __init__(self, data):
@@ -26,9 +26,9 @@ class Trip:
     # READ methods
     @classmethod
     def get_all(cls):
-        query = "SELECT trips.*, users.id FROM trips LEFT JOIN users ON users.id = trips.posted_by;"
+        query = "SELECT trips.*, users.first_name AS posted_by FROM trips LEFT JOIN users ON users.id = trips.user_id;"
         results = connectToMySQL(db).query_db(query)
-        print(results)
+        # print(results)
         if results == False:
             print('From trip.py line 33: None found')
             return None
