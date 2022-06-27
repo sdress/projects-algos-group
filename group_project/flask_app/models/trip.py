@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 from flask_app.models import user, trip
 
-db = ''
+db = 'user_trips'
 
 class Trip:
     def __init__(self, data):

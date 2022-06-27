@@ -7,7 +7,8 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 from flask import flash, request
 
 class User:
-    db_name=" "
+    db_name="user_trips"
+
     def __init__(self,data):
         self.id = data["id"]
         self.first_name=data["first_name"]
@@ -48,7 +49,6 @@ class User:
         else:
             return cls(results[0])
         
-   
     @staticmethod #validations
     def validate_newuser(form_data):
         is_valid = True
