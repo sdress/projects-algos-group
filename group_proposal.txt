@@ -4,7 +4,7 @@ Group:
 - Yasmin Ibrahim: Back-End/Database
 - Teren O'Toole: Front-End
 - Sarah Dresser: Back-End
-- Karina Anayancim Flores: TBD
+- Karina Anayancim Flores: front-end/back-end/database
 
 App Name:
 TBD
