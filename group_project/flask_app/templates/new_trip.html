@@ -63,13 +63,13 @@ keeping very minimal styling till we have an idea what the site as a whole will 
 
 <form action="/trip/save" method="POST">
     <input type="hidden" name="user_id" value="{{session['user_id']}}">
-        <!-- {% with messages = get_flashed_messages(category_filter=["trip"]) %}
+    {% with messages = get_flashed_messages(category_filter=["trip"]) %}
         {% if messages %}
             {% for message in messages %}
                 <p>{{message}}</p>
             {% endfor %}
         {% endif %}
-    {% endwith %} -->
+    {% endwith %}
     <div>
         <label>Name:
             <style> label {

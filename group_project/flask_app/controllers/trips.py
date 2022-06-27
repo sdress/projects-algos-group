@@ -17,7 +17,8 @@ def render_trip_form():
     return render_template('new_trip.html')
 
 @app.route('/trip/save', methods=['POST'])
-def create_trip(data):
+def create_trip():
+    print('Made it to trips.py, line 21')
     if not Trip.validate(request.form):
         return redirect('/trip/new')
     # name, city, state, description, category, cost, posted_by
