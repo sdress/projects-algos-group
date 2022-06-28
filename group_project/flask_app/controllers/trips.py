@@ -10,7 +10,9 @@ def show_dashboard():
     if 'user_id' not in session:
         flash('You must be logged in to access site')
         return redirect('/')
-    return render_template('dashboard.html', all_trips=Trip.get_all(), user_id=session['user_id'])
+    all_trips=Trip.get_all()
+    print(all_trips)
+    return render_template('dashboard.html', trips=all_trips)
 
 @app.route('/trip/new')
 def render_trip_form():
@@ -18,10 +20,11 @@ def render_trip_form():
 
 @app.route('/trip/save', methods=['POST'])
 def create_trip():
-    print('Made it to trips.py, line 21')
+    # print('Made it to trips.py, line 21')
     if not Trip.validate(request.form):
+        print('trips.py line 25: validation failed')
+        print(f'request.form = {request.form}')
         return redirect('/trip/new')
-    # name, city, state, description, category, cost, posted_by
     data = {
         'name': request.form['name'],
         'city': request.form['city'],
@@ -31,7 +34,8 @@ def create_trip():
         'cost': request.form['cost'],
         'user_id' : request.form['user_id']
     }
-    trip = Trip.create(data)
+    Trip.create(data)
+    print('trips.py line 38: trip saved?')
     return redirect('/dashboard')
 
 @app.route('/delete/trip/<int:id>')
