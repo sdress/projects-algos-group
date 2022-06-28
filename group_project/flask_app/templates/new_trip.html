@@ -58,18 +58,26 @@ keeping very minimal styling till we have an idea what the site as a whole will 
 
 <br></br>
 
-
+<div class="alert">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="alert-danger">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 <!-- adding trips with validation messages on top  -->
 
 <form action="/trip/save" method="POST">
     <input type="hidden" name="user_id" value="{{session['user_id']}}">
-    {% with messages = get_flashed_messages(category_filter=["trip"]) %}
+    <!-- {% with messages = get_flashed_messages(category_filter=["trip"]) %}
         {% if messages %}
             {% for message in messages %}
                 <p>{{message}}</p>
             {% endfor %}
         {% endif %}
-    {% endwith %}
+    {% endwith %} -->
     <div>
         <label>Name:
             <style> label {
@@ -108,10 +116,10 @@ keeping very minimal styling till we have an idea what the site as a whole will 
 
     <div>
         <label>Cost:</label>
-        <select>
-            <option name="cost" value="$">$</option>
-            <option name="cost" value="$$">$$</option>
-            <option name="cost" value="$$$">$$$</option>
+        <select name="cost">
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
         </select>
     </div>
 
