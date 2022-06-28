@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 from flask_app.models import user, trip
 
-db = 'user_trips'
+db = 'users_trips'
 
 class Trip:
     def __init__(self, data):
@@ -13,22 +13,22 @@ class Trip:
         self.description = data['description']
         self.category = data['category']
         self.cost = data['cost']
-        self.posted_by = data['posted_by']
+        self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
     
     # CREATE method
     @classmethod
     def create(cls, data):
-        query = "INSERT INTO trips (name, city, state, description, category, cost, posted_by, created_at, updated_at) VALUES ( %(name)s, %(city)s, %(state)s, %(description)s, %(category)s, %(cost)s, %(posted_by)s, NOW(), NOW() );"
+        query = "INSERT INTO trips (name, city, state, description, category, cost, user_id, created_at, updated_at) VALUES ( %(name)s, %(city)s, %(state)s, %(description)s, %(category)s, %(cost)s, %(user_id)s, NOW(), NOW() );"
         return connectToMySQL(db).query_db(query, data)
 
     # READ methods
     @classmethod
     def get_all(cls):
-        query = "SELECT trips.*, users.id FROM trips LEFT JOIN users ON users.id = trips.posted_by;"
+        query = "SELECT trips.*, users.first_name AS posted_by FROM trips LEFT JOIN users ON users.id = trips.user_id;"
         results = connectToMySQL(db).query_db(query)
-        print(results)
+        # print(results)
         if results == False:
             print('From trip.py line 33: None found')
             return None
