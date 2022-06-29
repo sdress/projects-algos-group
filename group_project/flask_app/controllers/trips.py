@@ -53,6 +53,41 @@ def show_trip(id):
     #}
     return render_template("view.html",trip=Trip.get_one(data),user=User.get_by_id(user_data))#, comments=Comment.get_trip_comments(trip_id))
 
+
+@app.route('/update/trip',methods=['POST'])
+def update_trip():
+    id = request.form['id']
+    if 'user_id' not in session:
+        return redirect('/logout')
+    if not Trip.validate_trips(request.form):
+        return redirect(f'/edit/trip/{id}')
+    data = {
+        'name': request.form['name'],
+        'city': request.form['city'],
+        'state': request.form['state'],
+        'description': request.form['description'],
+        'category': request.form['category'],
+        'cost': request.form['cost'],
+        "id":request.form['id']
+    }
+    Trip.update(data)
+    return redirect('/dashboard')
+
+@app.route('/trip/<int:id>')
+def show_trip(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id":id
+    }
+    user_data = {
+        "id":session['user_id']
+    }
+    #trip_id = {
+        #"trip_id": id
+    #}
+    return render_template("view.html",trip=Trip.get_one(data),user=User.get_by_id(user_data))#, comments=Comment.get_trip_comments(trip_id))
+
 @app.route('/delete/trip/<int:id>')
 def delete(id):
     if 'user_id' not in session:
