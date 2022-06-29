@@ -64,10 +64,16 @@
                                 </svg>-->
                                 <div class="card-body">
                                     <p class="card-text">Name: {{trip.name}}</p>
-                                    <p class="card-text">Location: {{trip.city}}  {{trip.state}}</p>
+                                    <p class="card-text">Location: {{trip.city}},  {{trip.state}}</p>
                                     <p class="card-text">Description: {{trip.description}}</p>
                                     <p class="card-text">Category: {{trip.category}}</p>
-                                    <p class="card-text">Cost: {{trip.cost}}</p>
+                                {% if trip.cost == 1 %}
+                                    <p class="card-text">Cost: $</p>
+                                {% elif trip.cost == 2 %}
+                                    <p class="card-text">Cost: $$</p>
+                                {% else %}
+                                    <p class="card-text">Cost: $$$</p>
+                                {% endif %}
                                     <p class="card-text">Posted by: {{trip.posted_by}}</p>
                                     
                                     
