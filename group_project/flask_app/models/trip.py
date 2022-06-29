@@ -22,6 +22,15 @@ class Trip:
     def create(cls, data):
         query = "INSERT INTO trips (name, city, state, description, category, cost, user_id, created_at, updated_at) VALUES ( %(name)s, %(city)s, %(state)s, %(description)s, %(category)s, %(cost)s, %(user_id)s, NOW(), NOW() );"
         return connectToMySQL(db).query_db(query, data)
+    
+    @classmethod
+    def get_one(cls, data):
+        query = "SELECT * FROM trips WHERE id = %(id)s;"
+        results = connectToMySQL(db).query_db(query,data)
+        if results == False:
+            return None
+        print(results)
+        return results
 
     # READ methods
     @classmethod
