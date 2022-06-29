@@ -36,7 +36,7 @@
             <div class="card-body">
                 <h2>{{trip.name}}</h2>
                 <br>
-                <p class="card-text">Location: {{trip.location}}</p>
+                <p class="card-text">Location: {{trip.city}}, {{trip.state}}</p>
                 <p class="card-text">Description: {{trip.description}}</p>
                 <p class="card-text">Category: {{trip.category}}</p>
                 {% if trip.cost == 1 %}
@@ -46,7 +46,9 @@
             {% else %}
                 <p class="card-text">Cost: $$$</p>
             {% endif %}
-                <p class="card-text">Posted by: {{trip.posted_by}}</p>
+            {% if user.id == trip.user_id %}
+                <p class="card-text">Posted by: {{user.first_name}}</p>
+            {% endif %}
         
         
                 <!--<h4>Comments:</h4>

@@ -100,27 +100,27 @@ class Trip:
     
     # TRIP FORM VALIDATIONS
     @staticmethod
-    def validate_trips(trips):
+    def validate_trip(trip):
         is_valid = True
-        if len(trips['name']) < 3:
+        if len(trip['name']) < 3:
             flash('Name of activity must be at least 3 characters', "trips")
             is_valid = False
-        if len(trips['city'])< 3:
+        if len(trip['city'])< 3:
             flash('Please include a city', "trips")
             is_valid = False
-        if len(trips['state']) < 2:
+        if len(trip['state']) < 2:
             flash('Please select a state', "trips")
             is_valid = False
-        if len(trips['description']) < 3:
+        if len(trip['description']) < 3:
             flash('Please provide a description', "trips")
             is_valid = False
-        if trips['category'] == None:
+        if trip['category'] == None:
             flash('Please provide a category', "trips")
             is_valid = False
-        if not 'cost' in trips:
+        if not 'cost' in trip:
             flash('Please input cost', "trips")
             is_valid = False
-        if not 'user_id' in trips:
+        if not 'user_id' in trip:
             print('User not found', "trips")
             is_valid = False
         return is_valid

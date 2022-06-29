@@ -39,7 +39,7 @@ def create_trip():
     return redirect('/dashboard')
 
 @app.route('/trip/<int:id>')
-def show_trip(id):
+def view_trip(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
