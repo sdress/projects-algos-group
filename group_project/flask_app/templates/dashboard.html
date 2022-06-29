@@ -81,8 +81,8 @@
                                         <div class="btn-group">
                                             <a href="/trip/{{trip.id}}" class="btn btn-sm btn-outline-secondary">View</a>
                                             {% if trip.user_id == session.user_id%}
-                                            <a href="/edit/trip/{trip.id}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                            <a href="/delete/trip/{trip.id}" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a href="/trip/{{trip.id}}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            <a href="/delete/trip/{{trip.id}}" class="btn btn-sm btn-outline-secondary">Delete</a>
                                             {% endif %}
                                         </div>
                                     </div>

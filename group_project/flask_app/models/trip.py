@@ -38,6 +38,12 @@ class Trip:
         return all_list
 
     @classmethod
+    def get_one(cls, data):
+            query = "SELECT * FROM trips JOIN users ON trips.user_id = users.id WHERE trips.id = %(id)s;"
+            results= connectToMySQL(db).query_db(query, data)
+            return results
+
+    @classmethod
     def get_all_with_username(cls):
         query = "SELECT trips.*, users.first_name FROM trips LEFT JOIN users ON users.id = trips.user_id;"
         results = connectToMySQL(db).query_db(query)
