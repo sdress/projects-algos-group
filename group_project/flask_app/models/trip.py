@@ -26,11 +26,24 @@ class Trip:
     # READ methods
     @classmethod
     def get_all(cls):
-        query = "SELECT trips.*, users.first_name AS posted_by FROM trips LEFT JOIN users ON users.id = trips.user_id;"
+        query = "SELECT trips.* FROM trips;"
         results = connectToMySQL(db).query_db(query)
         # print(results)
         if results == False:
             print('From trip.py line 33: None found')
+            return None
+        all_list = []
+        for row in results:
+            all_list.append(row)
+        return all_list
+
+    @classmethod
+    def get_all_with_username(cls):
+        query = "SELECT trips.*, users.first_name FROM trips LEFT JOIN users ON users.id = trips.user_id;"
+        results = connectToMySQL(db).query_db(query)
+        # print(results)
+        if results == False:
+            print('From trip.py line 46: None found')
             return None
         all_list = []
         for row in results:
@@ -92,10 +105,10 @@ class Trip:
         if data['category'] == None:
             flash('Please provide a category')
             is_valid = False
-        if len(data['cost']) < 1:
+        if not 'cost' in data:
             flash('Please input cost')
             is_valid = False
-        if not 'posted_by' in data:
+        if not 'user_id' in data:
             print('User not found')
             is_valid = False
         return is_valid
