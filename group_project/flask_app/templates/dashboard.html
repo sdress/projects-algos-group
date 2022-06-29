@@ -64,12 +64,18 @@
                                 </svg>-->
                                 <div class="card-body">
                                     <p class="card-text">Name: {{trip.name}}</p>
-                                    <p class="card-text">City: {{trip.city}}</p>
-                                    <p class="card-text">State: {{trip.state}}</p>
+                                    <p class="card-text">Location: {{trip.city}}  {{trip.state}}</p>
                                     <p class="card-text">Description: {{trip.description}}</p>
                                     <p class="card-text">Category: {{trip.category}}</p>
-                                    <p class="card-text">Cost: {{trip.cost}}</p>
-                                    <!-- <p class="card-text">Posted by: {{trip.posted_by}}</p> -->
+                                    <p class="card-text">Cost:
+                                        {% if trip.cost == 0 %}
+                                        $
+                                        {% elseif trip.cost == 1 %}
+                                        $$
+                                        {% else %}
+                                        $$$
+                                        {% endif %}} </p>
+                                    <p class="card-text">Posted by: {{trip.posted_by}}</p>
                                     
                                     
                                     <div class="d-flex justify-content-between align-items-center">
