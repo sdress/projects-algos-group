@@ -1,7 +1,7 @@
 from calendar import c
 from flask_app import app
 from flask import render_template, redirect,session, request, flash
-# from flask_app.models import trip, user
+#from flask_app.models import trip, user
 from flask_app.models.trip import Trip
 from flask_app.models.user import User
 
