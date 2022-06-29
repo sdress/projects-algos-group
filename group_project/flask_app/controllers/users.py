@@ -23,7 +23,7 @@ def register_user():
         'password': bcrypt.generate_password_hash(request.form['password']),
     }
     new_user = User.register(data)
-    session['user_id'] = new_user.id
+    session['user_id'] = new_user
     return redirect('/dashboard')
 
 @app.route('/login', methods=['POST'])
