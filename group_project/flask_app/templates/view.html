@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,8 +37,8 @@
                 <br>
                 <p class="card-text">Location: {{trip.location}}</p>
                 <p class="card-text">Description: {{trip.description}}</p>
-                <p class="card-text">Category: {{trip.category}}</p>
-                {% if trip.cost == 1 %}
+                <p class="card-text">Category: {{ trip.category }}</p>
+            {% if trip.cost == 1 %}
                 <p class="card-text">Cost: $</p>
             {% elif trip.cost == 2 %}
                 <p class="card-text">Cost: $$</p>
@@ -48,18 +47,6 @@
             {% endif %}
                 <p class="card-text">Posted by: {{trip.posted_by}}</p>
         
-        
-                <!--<h4>Comments:</h4>
-                {% for comment in comments %}
-                    {% if trip.user_id == comments.user_id %}
-                        <p class="card-text"><{{user.first_name}}commented: {{comment.comments}}</p>
-                        <p class="card-text"> {{comment.created_at.strftime('%B-%d-%Y-%I-%M')}}</p>
-                    {% endif %}
-                {% endfor %}
-                <br>
-                <a href="/new/{{trip.id}}/comment" class="btn btn-primary my-2">Add comment</a>-->
-                <br>
-                
             </div>
         </div>  
     </body>

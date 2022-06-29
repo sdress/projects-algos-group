@@ -1,4 +1,5 @@
 from calendar import c
+from tokenize import triple_quoted
 from flask_app import app
 from flask import render_template, redirect,session, request, flash
 #from flask_app.models import trip, user
@@ -11,7 +12,7 @@ def show_dashboard():
         flash('You must be logged in to access site')
         return redirect('/')
     all_trips=Trip.get_all()
-    print(all_trips)
+    # print(all_trips)
     return render_template('dashboard.html', trips=all_trips)
 
 @app.route('/trip/new')
@@ -43,23 +44,42 @@ def show_trip(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
-        "id":id
+        'id': id
     }
-    user_data = {
-        "id":session['user_id']
-    }
-    #trip_id = {
-        #"trip_id": id
-    #}
-    return render_template("show_book.html",trip=Trip.get_one(data),user=User.get_by_id(user_data))#, comments=Comment.get_trip_comments(trip_id))
+    trip=Trip.get_one(data)
+    print(trip)
+    return render_template("view.html",trip=Trip.get_one(data))
 
-@app.route('/delete/trip/<int:id>')
+@app.route('/trip/edit/<int:id>')
+def show_edit(id):
+if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        'id': id,
+    }
+    print(Trip.get_one(data))
+    return render_template('edit.html', trip = Trip.get_one(data))
+    
+@app.route('/trip/update/<int:id>')
+def update_trip(id):
+    if not Trip.validate(request.form):
+        return redirect(f'/trip/edit/<int:{id}>')
+    data = {
+        'name': request.form['name'],
+        'city': request.form['city'],
+        'state': request.form['state'],
+        'description': request.form['description'],
+        'category': request.form['category'],
+        'cost': request.form['cost'],
+        'user_id' : request.form['user_id']
+    }
+    Trip.update(data)
+    print('trips.py line 77: trip updated?')
+    return redirect('/dashboard')
+
+@app.route('/trip/delete/<int:id>')
 def delete(id):
     if 'user_id' not in session:
         return redirect('/logout')
-    data = {
-        "id":id
-    }
-    Trip.destroy(data)
+    Trip.destroy(id)
     return redirect('/dashboard')
-    

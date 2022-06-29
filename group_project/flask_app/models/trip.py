@@ -24,10 +24,13 @@ class Trip:
         return connectToMySQL(db).query_db(query, data)
     
     @classmethod
-    def get_one(cls,data):
+    def get_one(cls, data):
         query = "SELECT * FROM trips WHERE id = %(id)s;"
         results = connectToMySQL(db).query_db(query,data)
-        return cls(results[0])
+        if results == False:
+            return None
+        print(results)
+        return results
 
     # READ methods
     @classmethod
