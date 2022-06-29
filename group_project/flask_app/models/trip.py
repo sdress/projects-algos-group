@@ -23,6 +23,12 @@ class Trip:
         query = "INSERT INTO trips (name, city, state, description, category, cost, user_id, created_at, updated_at) VALUES ( %(name)s, %(city)s, %(state)s, %(description)s, %(category)s, %(cost)s, %(user_id)s, NOW(), NOW() );"
         return connectToMySQL(db).query_db(query, data)
 
+    @classmethod
+    def get_one(cls,data):
+        query = "SELECT * FROM trips WHERE id = %(id)s;"
+        results = connectToMySQL(db).query_db(query,data)
+        return cls(results[0])
+
     # READ methods
     @classmethod
     def get_all(cls):
@@ -88,27 +94,27 @@ class Trip:
     
     # TRIP FORM VALIDATIONS
     @staticmethod
-    def validate(data):
+    def validate_trips(trips):
         is_valid = True
-        if len(data['name']) < 3:
-            flash('Name of activity must be at least 3 characters')
+        if len(trips['name']) < 3:
+            flash('Name of activity must be at least 3 characters', "trips")
             is_valid = False
-        if len(data['city'])< 3:
-            flash('Please include a city')
+        if len(trips['city'])< 3:
+            flash('Please include a city', "trips")
             is_valid = False
-        if len(data['state']) < 2:
-            flash('Please select a state')
+        if len(trips['state']) < 2:
+            flash('Please select a state', "trips")
             is_valid = False
-        if len(data['description']) < 3:
-            flash('Please provide a description')
+        if len(trips['description']) < 3:
+            flash('Please provide a description', "trips")
             is_valid = False
-        if data['category'] == None:
-            flash('Please provide a category')
+        if trips['category'] == None:
+            flash('Please provide a category', "trips")
             is_valid = False
-        if not 'cost' in data:
-            flash('Please input cost')
+        if not 'cost' in trips:
+            flash('Please input cost', "trips")
             is_valid = False
-        if not 'user_id' in data:
-            print('User not found')
+        if not 'user_id' in trips:
+            print('User not found', "trips")
             is_valid = False
         return is_valid

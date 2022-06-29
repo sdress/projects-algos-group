@@ -38,6 +38,37 @@ def create_trip():
     print('trips.py line 38: trip saved?')
     return redirect('/dashboard')
 
+@app.route('/edit/trip/<int:id>')
+def edit_book(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id":id
+    }
+    user_data = {
+        "id":session['user_id']
+    }
+    return render_template("edit.html",edit=Trip.get_one(data),user=User.get_by_id(user_data))
+
+@app.route('/update/trip',methods=['POST'])
+def update_trip():
+    id = request.form['id']
+    if 'user_id' not in session:
+        return redirect('/logout')
+    if not Trip.validate_trips(request.form):
+        return redirect(f'/edit/trip/{id}')
+    data = {
+        'name': request.form['name'],
+        'city': request.form['city'],
+        'state': request.form['state'],
+        'description': request.form['description'],
+        'category': request.form['category'],
+        'cost': request.form['cost'],
+        "id":request.form['id']
+    }
+    Trip.update(data)
+    return redirect('/dashboard')
+
 @app.route('/delete/trip/<int:id>')
 def delete(id):
     if 'user_id' not in session:
