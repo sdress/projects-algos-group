@@ -10,55 +10,80 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&family=Oswald:wght@500&family=Roboto&family=Smooch&display=swap" rel="stylesheet">
-<head>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    
+    <header>
+            <div class="navbar navbar-light shadow-lg" id="section">
+                <div class="container">
+                    <style>
+                        section {
+                            width:1000px
+                        
+                        }
+                    </style>
+                    <a href="#" class="navbar-brand">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-geo-alt" viewBox="1 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            
+                        </svg>
+                    </a>
+                    <h1 class="text-dark">Add a New Destination
+                        
+                        <style> h1 {
+                            /* text-align: center; */
+                            font-size:40px;
+                            font-weight: bold;
+                            font-family: 'Gochi Hand', cursive;
+                        }
+                            </style>
+                            </h1>
+                            <a href="/dashboard" class="btn-lg btn-primary">Dashboard</a>
+                            <br></br>
+                            <a href="/logout"class = "btn-lg btn-primary">Log out</a> 
+                            <style>
+                                a {
+                                    font-size: 25px;
+                                    margin-left: 10px;
+                                    font-weight: bold;
+                                    font-family: 'Gochi Hand', cursive;
+                                }
+                            </style>
+                </div>
+            </div>
+        </header>
+    </div>
 
-
-<!-- let me know if my  input types are off or incorrect unsure what "cost" input type is,for now it is
-text?should i have put it as a drop down option ? 
-let me know if i need to fix anything -- also validations are commented out on here again untill its ready to roll :-)
-keeping very minimal styling till we have an idea what the site as a whole will look like --> 
-
-<nav class="nav"> 
-    <style> nav {
-        margin-left: -150px;
-    }
-
-    </style>
-<h1> Add a New Destination
-<!-- links could be incorrect check first  -->
-        <a href="/dashboard" class="btn-lg btn-dark">Dashboard</a>
-        <a href="/logout"class = "btn-lg btn-dark">Log out</a> 
-</h1>
 
     <style> h1 {
             border-right: 15px;
             color:darkslategrey;
-            font-size:45px;
+            font-size:30px;
             font-weight: bold;
-            font-family: 'Indie Flower', cursive;
-            font-family: 'Lobster', cursive;
-            font-family: 'Oswald', sans-serif;
-            font-family: 'Roboto', sans-serif;
-            font-family: 'Smooch', cursive;
+            font-family: 'Gochi Hand', cursive;
+            
             }
 
     </style>
 
 </nav>
-<body>
-    <style> body {
-        justify-content: center;
-        height: 600px;
-        width: 650px;
-        margin-left: 425px;
-        }
 
-    </style>
 
 <br></br>
+<body class="body">
 
 <div class="alert">
+    <style>
+        p {
+            font-size: 20px;
+            width: 300px;
+            margin-left: 300px;
+            font-weight: bold;
+            font-family: "Gochi Hand", cursive;
+            display:list-item;
+            
+        }
+    </style>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -80,16 +105,15 @@ keeping very minimal styling till we have an idea what the site as a whole will 
     {% endwith %} -->
     <div>
         <label>Name:
-            <style> label {
+            <style> label, form, input, form-action,textarea,alert {
+            margin-left: 150px;
             color:darkslategrey;
             border-radius: 15px;
             font-size:30px;
             font-weight: bold;
-            font-family: 'Indie Flower', cursive;
-            font-family: 'Lobster', cursive;
-            font-family: 'Oswald', sans-serif;
-            font-family: 'Roboto', sans-serif;
-            font-family: 'Smooch', cursive;
+            font-family: 'Gochi Hand', cursive;
+            justify-self: left;
+            
 
             }
             </style>
@@ -130,11 +154,7 @@ keeping very minimal styling till we have an idea what the site as a whole will 
             color:darkslategrey;
             font-size:20px;
             font-weight: bold;
-            font-family: 'Indie Flower', cursive;
-            font-family: 'Lobster', cursive;
-            font-family: 'Oswald', sans-serif;
-            font-family: 'Roboto', sans-serif;
-            font-family: 'Smooch', cursive;
+            font-family: 'Gochi Hand',cursive;
         }
             </style>
 
@@ -142,17 +162,13 @@ keeping very minimal styling till we have an idea what the site as a whole will 
         
     <div>
     <!-- brings back to dash  -->
-    <input type="submit" value="Add" class="btn-lg btn-dark"></input>
+    <input type="submit" value="Add" class="btn-lg btn-primary"></input>
         <style> input {
             color:darkslategrey;
             font-size:20px;
             border-radius: 15px;
             font-weight: bold;
-            font-family: 'Indie Flower', cursive;
-            font-family: 'Lobster', cursive;
-            font-family: 'Oswald', sans-serif;
-            font-family: 'Roboto', sans-serif;
-            font-family: 'Smooch', cursive;;
+            font-family: 'Gochi Hand', cursive;
         }
         </style>
         
