@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Add a Ride</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&family=Oswald:wght@500&family=Roboto&family=Smooch&display=swap" rel="stylesheet">
+<head>
+
+
+<!-- let me know if my  input types are off or incorrect unsure what "cost" input type is,for now it is
+text?should i have put it as a drop down option ? 
+let me know if i need to fix anything -- also validations are commented out on here again untill its ready to roll :-)
+keeping very minimal styling till we have an idea what the site as a whole will look like --> 
+
+<nav class="nav"> 
+    <style> nav {
+        margin-left: -150px;
+    }
+
+    </style>
+<h1> Add a New Destination
+<!-- links could be incorrect check first  -->
+        <a href="/dashboard" class="btn-lg btn-dark">Dashboard</a>
+        <a href="/logout"class = "btn-lg btn-dark">Log out</a> 
+</h1>
+
+    <style> h1 {
+            border-right: 15px;
+            color:darkslategrey;
+            font-size:45px;
+            font-weight: bold;
+            font-family: 'Indie Flower', cursive;
+            font-family: 'Lobster', cursive;
+            font-family: 'Oswald', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Smooch', cursive;
+            }
+
+    </style>
+
+</nav>
+<body>
+    <style> body {
+        justify-content: center;
+        height: 600px;
+        width: 650px;
+        margin-left: 425px;
+        }
+
+    </style>
+
+<br></br>
+
+
+<!-- adding trips with validation messages on top  -->
+
+<form action="/trip/save" method="POST">
+    <input type="hidden" name="user_id" value="{{session['user_id']}}">
+    {% with messages = get_flashed_messages(category_filter=["trip"]) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div>
+        <label>Name:
+            <style> label {
+            color:darkslategrey;
+            border-radius: 15px;
+            font-size:30px;
+            font-weight: bold;
+            font-family: 'Indie Flower', cursive;
+            font-family: 'Lobster', cursive;
+            font-family: 'Oswald', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Smooch', cursive;
+
+            }
+            </style>
+        </label>
+        <input type= "text" name="name" value="{{trip.name}}">
+    </div> 
+
+    <div>
+        <label>City:</label>
+        <input type= "text" name="city" value="{{trip.city}}">
+    </div>
+
+
+    <div>
+        <label>State:</label>
+        <input type= "text" name="state" value="{{trip.state}}">
+    </div> 
+    
+    <div>
+        <label>Category:</label>
+        <input type="text" name="category" value="{{trip.category}}">
+    </div>
+
+
+    <div>
+        <label>Cost:</label>
+        <select>
+            <option selected>{{trip.cost}}</option>
+            <option name="cost" value="$">$</option>
+            <option name="cost" value="$$">$$</option>
+            <option name="cost" value="$$$">$$$</option>
+        </select>
+    </div>
+
+        <label> Description:</label>
+        <div><textarea name="description" value="{{trip.description}}" cols="50" rows="3"></textarea>
+            <style> textarea {
+            border-radius: 15px;
+            color:darkslategrey;
+            font-size:20px;
+            font-weight: bold;
+            font-family: 'Indie Flower', cursive;
+            font-family: 'Lobster', cursive;
+            font-family: 'Oswald', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Smooch', cursive;
+        }
+            </style>
+
+        </div>
+        
+    <div>
+    <!-- brings back to dash  -->
+    <input type="submit" value="Add" class="btn-lg btn-dark"></input>
+        <style> input {
+            color:darkslategrey;
+            font-size:20px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-family: 'Indie Flower', cursive;
+            font-family: 'Lobster', cursive;
+            font-family: 'Oswald', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Smooch', cursive;;
+        }
+        </style>
+        
+</div>
+
+</form>
+</body>
+</html>
