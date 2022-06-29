@@ -9,12 +9,8 @@
         rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_style.css') }}">
-</head>
-
-<body>
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    </head>
+</head>
 
     <body>
         <header>
@@ -27,29 +23,32 @@
                         </svg>
                         <strong class="fs-4">Trips and Recreation</strong>
                     </a>
-                    <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+                    <span>
+                        <a href="/dashboard" class="btn btn-primary btn-sm">Dashboard</a>
+                        <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+                    </span>
                 </div>
             </div>
         </header>
         <div class="card col-5 mx-auto my-5 bg-light text-dark">
             <div class="card-body">
-                <h2>{{trip.name}}</h2>
+                {% for field in trip %}
+                <h2>{{field.name}}</h2>
                 <br>
-                <p class="card-text">Location: {{trip.location}}</p>
-                <p class="card-text">Description: {{trip.description}}</p>
-                <p class="card-text">Category: {{ trip.category }}</p>
-            {% if trip.cost == 1 %}
+                <p class="card-text">Location: {{field.city}}, {{field.state}}</p>
+                <p class="card-text">Description: {{field.description}}</p>
+                <p class="card-text">Category: {{ field.category }}</p>
+            {% if field.cost == 1 %}
                 <p class="card-text">Cost: $</p>
-            {% elif trip.cost == 2 %}
+            {% elif field.cost == 2 %}
                 <p class="card-text">Cost: $$</p>
             {% else %}
                 <p class="card-text">Cost: $$$</p>
             {% endif %}
-                <p class="card-text">Posted by: {{trip.posted_by}}</p>
-        
+            {% endfor %}
             </div>
         </div>  
     </body>
-    </html>
+</html>
     
     

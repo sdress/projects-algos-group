@@ -92,7 +92,7 @@ class Trip:
     # DESTROY method
     @classmethod
     def destroy(cls, data):
-        query = "DELETE * FROM trips WHERE id = %(id)s;"
+        query = "DELETE FROM trips WHERE id = %(id)s;"
         return connectToMySQL(db).query_db(query, data)
     
     # TRIP FORM VALIDATIONS

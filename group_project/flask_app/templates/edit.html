@@ -60,8 +60,7 @@ keeping very minimal styling till we have an idea what the site as a whole will 
 
 
 <!-- adding trips with validation messages on top  -->
-
-<form action="/trip/save" method="POST">
+<form action="/trip/update/{{trip_id}}" method="POST">
     <input type="hidden" name="user_id" value="{{session['user_id']}}">
     {% with messages = get_flashed_messages(category_filter=["trip"]) %}
         {% if messages %}
@@ -86,38 +85,46 @@ keeping very minimal styling till we have an idea what the site as a whole will 
             }
             </style>
         </label>
-        <input type= "text" name="name" value="{{trip.name}}">
+
+        {% for field in trip %}
+        <input type= "text" name="name" value="{{field.name}}">
     </div> 
 
     <div>
         <label>City:</label>
-        <input type= "text" name="city" value="{{trip.city}}">
+        <input type= "text" name="city" value="{{field.city}}">
     </div>
 
 
     <div>
         <label>State:</label>
-        <input type= "text" name="state" value="{{trip.state}}">
+        <input type= "text" name="state" value="{{field.state}}">
     </div> 
     
     <div>
         <label>Category:</label>
-        <input type="text" name="category" value="{{trip.category}}">
+        <input type="text" name="category" value="{{field.category}}">
     </div>
 
 
     <div>
         <label>Cost:</label>
-        <select>
-            <option selected>{{trip.cost}}</option>
-            <option name="cost" value="$">$</option>
-            <option name="cost" value="$$">$$</option>
-            <option name="cost" value="$$$">$$$</option>
+        <select name="cost">
+            {% if field.cost == 1 %}
+            <option value="1" selected>$</option>
+            {% elif field.cost ==2 %}
+            <option value="2" selected>$$</option>
+            {% else %}
+            <option value="3" selected>$$$</option>
+            {% endif %}
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
         </select>
     </div>
 
         <label> Description:</label>
-        <div><textarea name="description" value="{{trip.description}}" cols="50" rows="3"></textarea>
+        <div><textarea name="description" cols="50" rows="3">{{field.description}}</textarea>
             <style> textarea {
             border-radius: 15px;
             color:darkslategrey;
@@ -132,10 +139,10 @@ keeping very minimal styling till we have an idea what the site as a whole will 
             </style>
 
         </div>
-        
+        {% endfor %}
     <div>
     <!-- brings back to dash  -->
-    <input type="submit" value="Add" class="btn-lg btn-dark"></input>
+    <input type="submit" value="Update" class="btn-lg btn-dark"></input>
         <style> input {
             color:darkslategrey;
             font-size:20px;
@@ -149,7 +156,7 @@ keeping very minimal styling till we have an idea what the site as a whole will 
         }
         </style>
         
-</div>
+    </div>
 
 </form>
 </body>
