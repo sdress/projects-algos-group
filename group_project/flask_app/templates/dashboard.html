@@ -69,11 +69,11 @@
                                     <p class="card-text">Category: {{trip.category}}</p>
                                     <p class="card-text">Cost:
                                         {% if trip.cost == 0 %}
-                                        $
-                                        {% elseif trip.cost == 1 %}
-                                        $$
-                                        {% else %}
-                                        $$$
+                                            $
+                                            {% else %}
+                                                $$
+                                            {% else %}
+                                                $$$
                                         {% endif %}} </p>
                                     <p class="card-text">Posted by: {{trip.posted_by}}</p>
                                     
