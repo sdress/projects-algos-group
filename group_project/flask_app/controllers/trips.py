@@ -38,6 +38,21 @@ def create_trip():
     print('trips.py line 38: trip saved?')
     return redirect('/dashboard')
 
+@app.route('/trip/<int:id>')
+def show_trip(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id":id
+    }
+    user_data = {
+        "id":session['user_id']
+    }
+    #trip_id = {
+        #"trip_id": id
+    #}
+    return render_template("show_book.html",trip=Trip.get_one(data),user=User.get_by_id(user_data))#, comments=Comment.get_trip_comments(trip_id))
+
 @app.route('/delete/trip/<int:id>')
 def delete(id):
     if 'user_id' not in session:
