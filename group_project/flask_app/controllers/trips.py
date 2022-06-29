@@ -2,7 +2,7 @@ from calendar import c
 from tokenize import triple_quoted
 from flask_app import app
 from flask import render_template, redirect,session, request, flash
-# from flask_app.models import trip, user
+#from flask_app.models import trip, user
 from flask_app.models.trip import Trip
 from flask_app.models.user import User
 
@@ -52,14 +52,14 @@ def show_trip(id):
 
 @app.route('/trip/edit/<int:id>')
 def show_edit(id):
-    if 'user_id' not in session:
+if 'user_id' not in session:
         return redirect('/logout')
     data = {
         'id': id,
     }
     print(Trip.get_one(data))
     return render_template('edit.html', trip = Trip.get_one(data))
-
+    
 @app.route('/trip/update/<int:id>')
 def update_trip(id):
     if not Trip.validate(request.form):

@@ -28,7 +28,7 @@ class User:
         results = connectToMySQL(db_name).query_db(query, data)
         # print(f'data = {data}')
         # print(f"result = {results}")
-        return cls(results)
+        return results
 
     @classmethod
     def grab_userid(cls,data):
