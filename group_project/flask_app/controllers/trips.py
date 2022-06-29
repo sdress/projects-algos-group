@@ -62,4 +62,31 @@ def delete(id):
     }
     Trip.destroy(data)
     return redirect('/dashboard')
+
+@app.route('/trip/<int:id>/update', methods=['POST'])
+def update():
+    if not Trip.validate(request.form):
+        return redirect(f"/trip/{id}/edit")
+    data = {
+        'name': request.form['name'],
+        'city': request.form['city'],
+        'state': request.form['state'],
+        'description': request.form['description'],
+        'category': request.form['category'],
+        'cost': request.form['cost'],
+        'user_id' : request.form['user_id']
+    }
+    Trip.update(data)
+    return redirect('/dashboard')
+
+
+@app.route('/trip/<int:id>/edit')
+def edit_trip(id):
+    if "user_id" not in session:
+        return redirect("/")
+    data = {
+
+            "id":id
+        }
+    return render_template('edit_trip.html', trip = trip.Trip.get_one(data))
     
