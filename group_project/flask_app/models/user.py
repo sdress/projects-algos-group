@@ -43,7 +43,7 @@ class User:
     def get_by_id(cls,data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(db_name).query_db(query,data)
-        return cls(results)
+        return cls(results[0])
 
     @classmethod
     def grab_useremail(cls,data):
@@ -75,7 +75,7 @@ class User:
             flash("Password does not match", "register")
         return is_valid
 
-    @staticmethod
+    #@staticmethod
     def validate_login(form_data):
         is_valid = True
         print(f'form_data = {form_data}')
@@ -93,7 +93,7 @@ class User:
             is_valid = False
             # extra return here so line 96 does not break page
             return is_valid
-        if not bcrypt.check_password_hash(found_user.password, form_data['password']):
-            flash('Password does not match', 'login')
-            is_valid = False
-        return is_valid
+        #if not bcrypt.check_password_hash(found_user.password, form_data['password']):
+            #flash('Password does not match', 'login')
+            #is_valid = False
+        #return is_valid

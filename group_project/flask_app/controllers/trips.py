@@ -1,7 +1,7 @@
 from calendar import c
 from flask_app import app
 from flask import render_template, redirect,session, request, flash
-# from flask_app.models import trip, user
+#from flask_app.models import trip, user
 from flask_app.models.trip import Trip
 from flask_app.models.user import User
 
@@ -38,37 +38,6 @@ def create_trip():
     print('trips.py line 38: trip saved?')
     return redirect('/dashboard')
 
-@app.route('/edit/trip/<int:id>')
-def edit_book(id):
-    if 'user_id' not in session:
-        return redirect('/logout')
-    data = {
-        "id":id
-    }
-    user_data = {
-        "id":session['user_id']
-    }
-    return render_template("edit.html",edit=Trip.get_one(data),user=User.get_by_id(user_data))
-
-@app.route('/update/trip',methods=['POST'])
-def update_trip():
-    id = request.form['id']
-    if 'user_id' not in session:
-        return redirect('/logout')
-    if not Trip.validate_trips(request.form):
-        return redirect(f'/edit/trip/{id}')
-    data = {
-        'name': request.form['name'],
-        'city': request.form['city'],
-        'state': request.form['state'],
-        'description': request.form['description'],
-        'category': request.form['category'],
-        'cost': request.form['cost'],
-        "id":request.form['id']
-    }
-    Trip.update(data)
-    return redirect('/dashboard')
-
 @app.route('/trip/<int:id>')
 def show_trip(id):
     if 'user_id' not in session:
@@ -82,8 +51,7 @@ def show_trip(id):
     #trip_id = {
         #"trip_id": id
     #}
-    return render_template("view.html",trip=Trip.get_one(data),user=User.get_by_id(user_data))  #comments=Comment.get_book_comments(trip_id)
-
+    return render_template("view.html",trip=Trip.get_one(data),user=User.get_by_id(user_data))#, comments=Comment.get_trip_comments(trip_id))
 
 @app.route('/delete/trip/<int:id>')
 def delete(id):

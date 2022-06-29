@@ -1,55 +1,68 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Trip</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='show_book.css') }}">
+    <title>Trips and Recreation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_style.css') }}">
 </head>
+
 <body>
-    <header>
-        <div class="navbar navbar-dark shadow-lg" id="section">
-            <div class="container">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-bookmark-heart" viewBox="2 0 16 16" class="me-2">
-                    <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                </svg>
-                <strong class="fs-4">Trips and Recreation</strong>
-            </a>
-            <div class="d-flex justify-content-between align-items-center col-2">
-                <a href="/dashboard" class="btn btn-secondary btn-sm ">Dashboard</a>
-                <a href="/logout" class="btn btn-secondary btn-sm">Logout</a>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <header>
+            <div class="navbar navbar-light shadow-lg" id="section">
+                <div class="container">
+                    <a href="#" class="navbar-brand d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" fill="currentColor" class="bi bi-geo-alt" viewBox="1 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                        <strong class="fs-4">Trips and Recreation</strong>
+                    </a>
+                    <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+                </div>
             </div>
-            
+        </header>
+        <div class="card col-5 mx-auto my-5 bg-light text-dark">
+            <div class="card-body">
+                <h2>{{trip.name}}</h2>
+                <br>
+                <p class="card-text">Location: {{trip.location}}</p>
+                <p class="card-text">Description: {{trip.description}}</p>
+                <p class="card-text">Category: {{trip.category}}</p>
+                {% if trip.cost == 1 %}
+                <p class="card-text">Cost: $</p>
+            {% elif trip.cost == 2 %}
+                <p class="card-text">Cost: $$</p>
+            {% else %}
+                <p class="card-text">Cost: $$$</p>
+            {% endif %}
+                <p class="card-text">Posted by: {{trip.posted_by}}</p>
+        
+        
+                <!--<h4>Comments:</h4>
+                {% for comment in comments %}
+                    {% if trip.user_id == comments.user_id %}
+                        <p class="card-text"><{{user.first_name}}commented: {{comment.comments}}</p>
+                        <p class="card-text"> {{comment.created_at.strftime('%B-%d-%Y-%I-%M')}}</p>
+                    {% endif %}
+                {% endfor %}
+                <br>
+                <a href="/new/{{trip.id}}/comment" class="btn btn-primary my-2">Add comment</a>-->
+                <br>
+                
             </div>
-        </div>
-    </header>
+        </div>  
+    </body>
+    </html>
     
-    <div class="card col-5 mx-auto my-5 bg-light text-dark">
-        <div class="card-body">
-            <h2>{{trip.name}}</h2>
-            <br>
-            
-            <p class="card-text">City: {{trip.city}}</p>
-            <p class="card-text">State: {{trip.state}}</p>
-            <p class="card-text">Description: {{trip.description}}</p>
-            <p class="card-text">Category: {{trip.category}}</p>
-            <p class="card-text">Cost: {{trip.cost}}</p>
-            
-            <h4>Comments:</h4>
-            {% for comment in comments %}
-                {% if trip.user_id == comments.user_id %}
-                    <p class="card-text"><{{user.first_name}}commented: <!--{{comment.comments}}--></p>
-                    <p class="card-text"> {{comment.created_at.strftime('%B-%d-%Y-%I-%M')}}</p>
-                {% endif %}
-            {% endfor %}
-            <br>
-            <a href="/new/{{trip.id}}/comment" class="btn btn-primary my-2">Add comment</a>
-            <br>
-            <small class="text-muted"></small>
-        </div>
-    </div>
-</body>
-</html>
+    

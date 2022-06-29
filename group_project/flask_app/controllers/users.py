@@ -29,7 +29,7 @@ def register_user():
 @app.route('/login', methods=['POST'])
 def login_user():
     if not User.validate_login(request.form):
-        # print(f'line 34: request.form = {request.form}')
+        print(f'line 34: request.form = {request.form}')
         return redirect('/')
     data = {
         'email': request.form['email'],
