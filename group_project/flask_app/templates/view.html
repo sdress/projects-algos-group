@@ -10,6 +10,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_style.css') }}">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
 </head>
 
     <body>
@@ -26,12 +29,24 @@
                     <span>
                         <a href="/dashboard" class="btn btn-primary btn-sm">Dashboard</a>
                         <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+                        <style>
+                            a {
+                            font-weight: bold;
+                            font-family: 'Gochi Hand', cursive;
+                            }
+                        </style>
                     </span>
                 </div>
             </div>
         </header>
         <div class="card col-5 mx-auto my-5 bg-light text-dark">
             <div class="card-body">
+                <style>
+                    div {
+                        font-weight: bold;
+                        font-family: 'Gochi Hand', cursive;
+                    }
+                </style>
                 {% for field in trip %}
                 <h2>{{field.name}}</h2>
                 <br>
@@ -50,5 +65,4 @@
         </div>  
     </body>
 </html>
-    
     
