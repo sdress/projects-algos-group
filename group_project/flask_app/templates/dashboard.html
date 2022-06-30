@@ -10,6 +10,9 @@
         rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -30,7 +33,13 @@
                         </svg>
                         <strong class="fs-4">Places to Go</strong>
                     </a>
-                    <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+                    <a href="/logout" class="btn-lg btn-primary">Logout</a>
+                    <style>
+                        a {
+                        font-weight: bold;
+                        font-family: 'Gochi Hand', cursive;
+                        }
+                    </style>
                 </div>
             </div>
         </header>
@@ -38,11 +47,25 @@
         <main>
 
             <section class="py-5 text-center container">
+                <style>
+                    section {
+                        font-weight: bold;
+                        font-family: 'Gochi Hand', cursive;
+                        height:275px;
+                    }
+                </style>
                 <div class="row py-lg-5">
                     <div class="col-lg-6 col-md-8 mx-auto">
                         <h1 class="fw-light"><strong>Places to go</strong></h1>
                         <p class="lead text-dark"><strong>In need of a fun places to visit in your state? Look no further! Recommend places and have other people recommend places for you to visit. </strong></p>
-                        <a href="/trip/new" class="btn btn-primary my-2">Add a place</a>
+                        <a href="/trip/new" class="btn btn-primary btn-lg">Add a place</a>
+                        <style>
+                            a {
+                                font-weight: bold;
+                                font-size: large;
+                                font-family: 'Gochi Hand', cursive;
+                            }
+                        </style>
                         </p>
                     </div>
                 </div>
@@ -51,6 +74,13 @@
             
             <div class="d-flex flex-wrap album py-5 bg-light">
                 <div class=" container">
+                    <style>
+                        containter {
+                        font-weight: bold;
+                        font-family: 'Gochi Hand', cursive;
+                        font-size: larger;
+                        }
+                    </style>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {% for trip in trips %}
                         <div class="col">
@@ -63,25 +93,37 @@
                                         fill="#eceeef" dy=".3em">Image</text>
                                 </svg>-->
                                 <div class="card-body">
+                                    <style>
+                                        card-body, card-text, p {
+                                        font-weight: bold;
+                                        font-family: 'Gochi Hand', cursive;
+                                        border-width: 15px;
+                                        font-size: 20px;
+                                        display: inline-table;
+                                        }
+                                    </style>
                                     <p class="card-text">Name: {{trip.name}}</p>
-                                    <p class="card-text">Location: {{trip.city}}, {{trip.state}}</p>
+                                    <p class="card-text">Location: {{trip.city}},  {{trip.state}}</p>
                                     <p class="card-text">Description: {{trip.description}}</p>
                                     <p class="card-text">Category: {{trip.category}}</p>
                                     <p class="card-text">Cost:
                                         {% if trip.cost == 1 %}
                                         $
-                                        {% elif trip.cost == 2 %}
+                                        {% elseif trip.cost == 2 %}
                                         $$
                                         {% else %}
                                         $$$
-                                        {% endif %} </p>
+                                        {% endif %}} </p>
+                                    
+                                    
                                     
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <a href="/trip/{{trip.id}}" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <div class="btn-group btn-primary btn-md">
+                                            <a href="/trip/{{trip.id}}" class="btn btn-md btn-outline-secondary ">View</a>
+                                            <br></br>
                                             {% if trip.user_id == session.user_id%}
-                                            <a href="/trip/edit/{{trip.id}}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                            <a href="/trip/delete/{{trip.id}}" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a href="/trip/edit/{{trip.id}}" class="btn btn-md btn-outline-secondary">Edit</a>
+                                            <a href="/trip/delete/{{trip.id}}" class="btn btn-md btn-outline-secondary">Delete</a>
                                             {% endif %}
                                         </div>
                                     </div>
