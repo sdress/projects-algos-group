@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Places to Go</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
 
 
-<body>
-   
+</head>
 
-
-
+    <body>
 
         <header>
 
@@ -30,15 +29,16 @@
                             <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
                             <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         </svg>
-                        <strong class="fs-4">Places to Go</strong>
+                        <strong class="fs-2">Places to Go</strong>
                     </a>
-                    <a href="/logout" class="btn-lg btn-primary">Logout</a>
-                    <style>
-                        a {
-                        font-weight: bold;
-                        font-family: 'Gochi Hand', cursive;
-                        }
-                    </style>
+                    <a href="/logout" class="btn-lg btn-primary ">Logout</a>
+                        <style>
+                            a {
+                                font-weight:bold;
+                                font-family:'Gochi Hand',cursive;
+                                font-style: normal;
+                            }
+                        </style>
                 </div>
             </div>
         </header>
@@ -48,8 +48,8 @@
             <section class="py-5 text-center container">
                 <style>
                     section {
-                        font-weight: bold;
-                        font-family: 'Gochi Hand', cursive;
+                        font-weight:bold;
+                        font-family:'Gochi Hand',cursive;
                         height:275px;
                     }
                 </style>
@@ -67,7 +67,6 @@
                         </style>
                         </p>
                     </div>
-                </div>
             </section>
 
             
@@ -102,24 +101,21 @@
                                         }
                                     </style>
                                     <p class="card-text">Name: {{trip.name}}</p>
-                                    <p class="card-text">Location: {{trip.city}},  {{trip.state}}</p>
+                                    <p class="card-text">Location: {{trip.city}}, {{trip.state}}</p>
                                     <p class="card-text">Description: {{trip.description}}</p>
                                     <p class="card-text">Category: {{trip.category}}</p>
                                     <p class="card-text">Cost:
                                         {% if trip.cost == 1 %}
                                         $
-                                        {% elseif trip.cost == 2 %}
+                                        {% elif trip.cost == 2 %}
                                         $$
                                         {% else %}
                                         $$$
-                                        {% endif %}} </p>
-                                    
-                                    
+                                        {% endif %} </p>
                                     
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group btn-primary btn-md">
-                                            <a href="/trip/{{trip.id}}" class="btn btn-md btn-outline-secondary ">View</a>
-                                            <br></br>
+                                            <a href="/trip/{{trip.id}}" class="btn btn-md btn-outline-secondary">View</a>
                                             {% if trip.user_id == session.user_id%}
                                             <a href="/trip/edit/{{trip.id}}" class="btn btn-md btn-outline-secondary">Edit</a>
                                             <a href="/trip/delete/{{trip.id}}" class="btn btn-md btn-outline-secondary">Delete</a>
@@ -136,12 +132,18 @@
             
         </main>
 
-        <footer class="text-muted py-5">
+        <footer class="text-muted py-3">
             <div class="container">
                 <p class="float-end mb-1">
                     <a href="#">Back to top</a>
                 </p>
                 <p class="mb-1">For travel lovers.</p>
+                <span class="bi bi-heart-fill red-color"></span>
+                <style>
+                    span {
+                        color: crimson;
+                    }
+                </style> 
                 <p class="mb-0"></p>
             </div>
         </footer>
