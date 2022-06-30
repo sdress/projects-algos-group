@@ -78,13 +78,20 @@ class User:
     @staticmethod
     def validate_login(form_data):
         is_valid = True
+        if not EMAIL_REGEX.match(form_data['email']): 
+            flash("Please use a valid email", "login")
+            is_valid = False
+            return is_valid
         print(f'form_data = {form_data}')
         email_data = {
             "email": form_data["email"]
         }
         # print(f'email_data = {email_data}')
         found_user = User.grab_useremail(email_data)
-        # print(f'found_user = {found_user}')
+        print(f'found_user = {found_user}')
+        if found_user == None:
+            flash('User not found', 'login')
+            is_valid = False
         if not found_user:
             flash("Must be a valid email", "login")
             is_valid = False
